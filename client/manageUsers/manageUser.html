@@ -1,0 +1,203 @@
+
+
+<template name="manageUsers">
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12 card">
+
+		       <ul class="nav nav-tabs">
+		           <li class="active"><a href="#add_Roles" data-toggle="tab">Add Roles</a></li>
+		        </ul>
+
+
+		        <div class="tab-content">
+		          <div class="tab-pane fade in active" id="add_Roles">
+								 <br/>
+								 <br/>
+									<div class="row">
+										<div class="col-md-6 pull-right">
+												<div class="form-group">
+												 	<input type="text" id="js-searchUser" class="form-control" placeholder="Search for...">
+												</div>
+										</div>
+									</div>
+								 <br/>
+								 <br/>
+										<div class="row">
+											 <div class="col-md-12">
+											     <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+																			<tr>
+                                       <th class="text-center text-info">SN</th>
+																			 <th class="text-center text-info">Reg Num</th>
+                                       <th class="text-center text-info">Name</th>
+                                       <th class="text-center text-info">Position</th>
+                                       <th class="text-center text-info">All Roles</th>
+                                       <th class="text-center text-info">Last Login</th>
+                                       <th class="text-center text-info">Online</th>
+                                       <th class="text-center text-info">Action</th>
+																		 </tr>
+                                    </thead>
+															{{#if searching}}
+	                               {{> spinner}}
+	                            {{else}}
+                                   {{# each getUsers}}
+                                  <tbody>
+                                    <tr>
+
+                                       <td>{{showIndex @index}}</td>
+
+																			 {{#if regnum}}
+																				 		<td>{{regnum}}</td>
+																			 {{else}}
+																			 	    <td>Nil</td>
+																			 {{/ if}}
+
+                                      <td>{{profile.firstname}} {{profile.surname}}</td>
+
+
+                                    <td>
+
+	             					<select {{disableIfAdmin _id}} name="userRole" class="form-control js-selectRole" data-id="{{_id}}">
+	             							 <option value="0">Select Role</option>
+	               							 <option selected="{{selected  roles.[0] 'admin'}}" value="admin">Admin</option>
+	               							 <option selected="{{selected  roles.[0] 'student'}}" value="student">Student</option>
+	              							  <option selected="{{selected roles.[0] 'staff'}}" value="staff">Staff</option>
+                                <option selected="{{selected roles.[0] 'blogAuthor'}}" value="blogAuthor">Blog Author</option>
+                              <option selected="{{selected roles.[0] 'blogAdmin'}}" value="blogAdmin">Blog Administrator</option>
+            						  </select>
+            						</td>
+
+                        <td>
+
+                           <ul class="styled">
+                              {{#if checkArray roles}}
+                                    {{#each roles}}
+                                         <li class="list-unstyled">{{this}}</li>
+                                    {{/ each}}
+                              {{/ if}}
+                            </ul>
+
+                        </td>
+
+                                    <td>{{formatDate status.lastLogin.date }}</td>
+
+                                        {{# if status.online}}
+                                        <td><span class="label label-{{showStatus status.online}}">Online</span></td>
+                                        {{else}}
+                                        <td><span class="label label-{{showStatus status.online}}">Offline</span></td>
+                                        {{/if}}
+
+                                        <td>
+                                            {{# unless isCurrentUser _id}}
+																						<div class="btn-group">
+																							<button type="button" class="btn-info js-deleteUser btn-xs" data-id="{{_id}}">
+																								 <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> delete User
+																							 </button>
+
+																							 <button type="button" class="btn btn-danger js-editRole btn-xs" data-id="{{_id}}">
+																								 <span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Remove Role
+																							 </button>
+
+																							 <button type="button" class="btn btn-primary js-addRegNum btn-xs" data-id="{{_id}}">
+																								 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Add RegNum
+																							 </button>
+
+																						</div>
+
+                                            {{/ unless }}
+                                        </td>
+
+                                    </tr>
+                                   </tbody>
+                                    {{/ each}}
+																{{/if}}
+                               </table>
+  		                   </div>
+											 </div>
+  		                 </div>
+										</div>
+
+
+		              <div class="tab-pane fade" id="remove_account">
+
+		              		<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+		              </div>
+
+		               <div class="tab-pane fade" id="others">
+
+                            <p>Hello world</p>
+
+
+		              </div>
+
+
+
+        </div>
+        </div>
+	</div>
+</div>
+
+
+
+ <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <h3 class="modal-title" id="modalTitle"></h3>
+          </div>
+
+          <div class="modal-body">
+               {{#each oneUser}}
+                   <ul class="list-unstyled">
+                     {{#each roles}}
+
+                         <li><span class="label label-info">{{this}}<button class="js-removeRole">X</button></span></li>
+
+                    {{/ each}}
+
+                     </ul>
+
+                   {{/ each}}
+
+
+                <div class="modal-footer">
+
+
+                </div>
+
+           </div>
+        </div>
+      </div>
+    </div>
+
+
+		<div class="modal fade" id="updateRegistrationNum" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+	         <div class="modal-dialog">
+	         <div class="modal-content">
+	             <div class="modal-header">
+	             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+	             <h3 class="modal-title" id="modalTitle"></h3>
+	           </div>
+
+	           <div class="modal-body">
+							 <div class="form-group">
+									 <label for="Registration Number"> Registeration Number : </label>
+											<input type="text" class="form-control" id="txtRegNumber" />
+							 </div>
+
+	                 <div class="modal-footer">
+	                      <button class="btn btn-danger js-updateReg">Update Registration Number</button>
+
+	                 </div>
+
+	            </div>
+	         </div>
+	       </div>
+	     </div>
+
+</template>

@@ -1,0 +1,54 @@
+
+
+
+<template name="editTermPaper">
+
+	<div class="row">
+      <div class="col-md-6 col-md-offset-3">
+          <div class="panel panel-default card">
+            <div class="panel-heading">
+              <h3 class="card title">Edit Term Paper</h3>
+            </div>
+            <div class="panel-body card content">
+                 
+
+                 <div class="form-group">
+                       <label for="paper name"> Select Paper : </label>
+                           <select class="js-termPaper form-control" id="js-termPaper">
+                           	   <option value="0">Select Term Paper</option>
+                           	   		{{# each termPaper}}
+                           	        	 <option value="{{_id}}">{{paper_name}}</option>
+                           	         {{/ each}}
+                           	   		  		
+                           </select>
+                   </div>
+
+                   <hr/>
+
+                 {{# with oneTermPaper}}
+                  
+                          <p><span>Paper Name : {{> editableText context=oneTermPaper collection="termpaper" field="paper_name" class="form-control"}} </span></p>
+               
+                        <p><span> <input type="text" class="form-control" id="txtLastDate"> </span></p>
+              
+                        <p><span> Date Created : {{formatDate date_created}}</span></p>
+               
+
+                     {{# if active}}
+                          <input type="checkbox" class="js-checked" data-id="{{_id}}" checked="checked"> :<span class="label label-{{showStatus active}}"> Active</span>||
+                      {{else}}
+                           <input type="checkbox" class="js-checked" data-id="{{_id}}"> :<span class="label label-{{showStatus active}}">Not Active</span>||
+                        {{/if}}
+                 
+                   {{/ with }}
+
+                
+
+              
+            </div>
+          </div>
+
+        </div>
+        </div>
+
+</template>

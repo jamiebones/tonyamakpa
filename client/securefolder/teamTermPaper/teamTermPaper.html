@@ -1,0 +1,49 @@
+
+
+<template name="teamTermPaper">
+     <form id="teamForm">
+      <div class="row card">
+            <div class="form-group">
+                <label for="paper name"> Term Paper Name : </label>
+                   <input type="text" class="form-control js-termPaperName required" id="txtPaperName" />
+            </div>
+
+            <div class="form-group">
+                <label for="paper name"> Instructions: </label>
+                   <textarea class="form-control js-termPaperInstruction" rows="7"></textarea>
+            </div>
+
+            <div class="form-group">
+               <label for="paper name"> Last Submission Date :</label>
+                 <input type="text" class="form-control js-lastSubmitDate required" id="datepicker">
+           </div>
+      </div>
+
+      <div class="row">
+         <div class="col-md-12">
+            <div class="col-md-5 card">
+              <ul class="list-unstyled">
+                 {{#each getStudents}}
+                    {{#if regnum}}
+                      <li class="js-studentList" data-id="{{regnum}}">{{regnum}} - {{profile.firstname}} {{profile.surname}}</li>
+                    {{/if}}
+                 {{/each}}
+              </ul>
+
+            </div>
+
+            <div class="col-md-5 col-md-offset-1 card selectedDiv">
+                  <h4 class="text-center">Selected Students</h4>
+            </div>
+          </div>
+      </div>
+
+    <div class="row">
+       <div class="col-md-12">
+          <div class="form-group">
+              <button class="btn btn-warning btn-block js-submitTermPaper" type="submit">Assign Students To Team Term Paper</button>
+          </div>
+      </div>
+    </div>
+  </form>
+</template>

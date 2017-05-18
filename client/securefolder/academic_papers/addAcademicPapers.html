@@ -1,0 +1,136 @@
+
+
+<template name="addAcademicPapers">
+
+	 <div class="col-md-8 col-md-offset-2">
+          <div class="panel panel-danger card">
+            <div class="panel-heading">
+              <h3 class="card title">Add Academic Paper</h3>
+            </div>
+            <div class="panel-body card content">
+
+               <div class="paperDetails">
+
+                 <form id="formAddAcademicPaper">
+
+                   <div class="form-group">
+                       <label for="paper name"> Paper Name : </label>
+                          <input type="text" class="form-control js-academicPaperName" />
+                   </div>
+
+                   <div class="row well">
+
+	                 	 <div class="form-group">
+								   <label for="title">select title</label>
+
+								    <select id="selectState" class="form-control js-selectTitle">
+								     <option value="0">select title</option>
+								         {{#each title}}
+
+								            <option value="{{this}}">{{this}}</option>
+
+								         {{/ each}}
+								    </select>
+						 </div>
+
+	                    <div class="form-group">
+	                       <label for="paper name"> Author Name :</label>
+	                         <input type="text" class="form-control js-authorName">
+	                   </div>
+
+	                      <button class="btn btn-default pull-right js-addAuthorName">Add Author</button>
+
+
+                   </div>
+
+
+
+
+              		  <div class="help-block well divAuthorName hide">
+				  				<span class="text-centre text-info">Authors</span>
+
+
+
+
+			    	 </div>
+
+			    	  <div class="form-group">
+						 <label for="Paper Abstract">Paper Abstract</label>
+
+								  <div id="summernotePaperAbstract"></div>
+
+					   </div>
+
+
+
+
+                    <button class="btn btn-info js-addTermPaper">Add Academic Paper</button>
+
+
+
+                 </form>
+
+                </div>
+
+                <div class="paperUpload hide">
+
+		            <div id="divUpload">
+		               <p id="js-paperTitle"></p>
+
+		              <div class="form-group">
+		                <label for="upload images">Upload Paper</label>
+		                <input type="file" id="filePaper">
+
+		                <hr/>
+
+		              </div>
+
+		            </div>
+
+
+            <div class="hide" id="divProgress">
+		            <div class="progress">
+						      <div class="progress-bar" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+							     aria-valuemax="100" style="width: {{progress}}%;">
+									 		<span class="sr-only">{{progress}} % Complete </span>
+		              </div>
+		            </div>
+
+                    <br/>
+                   <p>  {{{isUploading}}} </p>
+              </div>
+
+             </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+<!-- line modal -->
+<div class="modal fade" id="addPaperModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			<h3 class="modal-title" id="modalTitle"></h3>
+		</div>
+		<div class="modal-body card">
+
+            <!-- content goes here -->
+
+
+
+		<div class="modal-footer">
+
+		</div>
+	</div>
+  </div>
+</div>
+</div>
+
+
+
+</template>

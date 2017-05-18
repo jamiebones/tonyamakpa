@@ -1,0 +1,42 @@
+
+<template name="addCourse">
+  
+   <div class="row">
+      <div class="col-md-offset-3 col-md-6 card">
+
+          <h4 class="text-center">Add Course</h4>
+
+        <form id="addCourse">
+          <div class="form-group">
+              <label for="js-courseCode"> Course Code : </label>
+                 <input type="text" class="form-control js-courseCode required" />
+          </div>
+
+          <div class="form-group">
+              <label for="js-courseTitle"> Course Title : </label>
+                 <input type="text" class="form-control js-courseTitle required" />
+          </div>
+
+          <div class="form-group">
+             <label for="courseLevel">Course Level : </label>
+              <select id="courseLevel" class="form-control">
+                 <option value="0">Select Level</option>
+
+                {{#each courseLevel}}
+                   <option value="{{this}}">{{this}}</option>
+                 {{/each}}
+               </select>
+          </div>
+
+           <button class="btn btn-info js-addCourse">Add Course </button>
+
+
+
+        </form>
+
+       </div>
+
+
+   </div>
+
+</template>

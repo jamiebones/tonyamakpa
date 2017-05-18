@@ -1,0 +1,22 @@
+
+<template name="message">
+  <div class="container-fluid">
+     <div class="row card">
+        <div class="col-md-10">
+           <div class="message {{formatChatMessage owner}} {{colorChat owner}}">
+               {{#if showHeader}}
+                     <h4>{{name owner}} <span>{{messageTimeStamp timestamp}} </span></h4>
+               {{/if}}
+
+               <div class="{{formatChatMessage owner}} {{colorChat owner}}">
+                  <p class="{{colorChat owner}}">{{{message}}}</p>
+              </div>
+
+           </div>
+
+
+        </div>
+      </div>
+  </div>
+
+</template>

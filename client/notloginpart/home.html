@@ -1,0 +1,148 @@
+
+
+<template name="home">
+
+     <div>
+      	<div class="row">
+        <div id="iFeatures">
+                <div class="ticker">
+                   {{#each homepageNews}}
+                        <li><p class="tickerNews"><a href="#">{{news}} date posted- {{date}}</a></p></li>
+                   {{/each}}
+                </div>
+             </div>
+
+      </div><!-- /row -->
+    </div>
+
+    <div class="container-fluid">
+       <div class="row">
+         <div class="col-md-8">
+              <h4 class="text-info">Message From Anthony Amakpa</h4>
+                 <p>
+                      Top aligned media
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                      Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+                       64x64
+                      Middle aligned media
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel <img src="img/jamie.jpg" class="img img-thumbnail img-responsive pull-right"> metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                      Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+                       64x64
+                      Bottom aligned media
+                      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+                      Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+             </div>
+
+
+         <div class="col-md-4 todayHistory card">
+         	   <ul class="list-unstyled">
+              {{# if todayHistory}}
+                {{#each todayHistory}}
+                   <h3 class="text-center"><span class="label label-info">Today in History</span></h3>
+         	   	     <li> {{{extract}}} </li>
+                   <hr/>
+                {{/ each}}
+
+                {{else}}
+
+                   <h3 class="text-center"><span class="label label-danger">No History Today</span></h3>
+
+                   <img src="img/house.jpg" class="img img-responsive">
+
+
+              {{/ if}}
+         	   </ul>
+
+
+         </div>
+      </div>
+    </div>
+
+
+
+<div>
+      <div class="row homeScholar">
+         <div class="col-md-4">
+               <h3><span class="label label-info">Events</span></h3>
+
+            <p>Department event will be listed here</p>
+
+            <div class="row">
+               <div class="col-md-10 col-md-offset-2">
+              {{# each showEvents}}
+
+            <div class="card">
+
+              <p>{{event_name}}</p>
+              <p>{{formatDate event_date}}</p>
+              <p><img src="{{card_link}}" class="img img-responsive"></p>
+             </div>
+            {{/ each}}
+            </div>
+          </div>
+        </div>
+
+         <div class="col-md-4">
+
+         	 <h3 class="text-center"><span class="label label-info">Book Review</span></h3>
+
+
+                  <div class="col-md-5 card">
+
+
+
+                    </div>
+
+                    <div class="col-md-1"></div>
+
+
+
+         </div>
+
+      <div class="col-md-4 card scoresPanel">
+
+
+
+       </div>
+
+
+
+
+      </div>
+  </div><!-- /headerwrap -->
+
+
+<div class="container-fluid">
+   <div class="mtb">
+    <div class="row">
+      <div class="col-md-4">
+        <h4>Department News</h4>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. </p>
+        <p><br/><a href="about.html" class="btn btn-theme">More Info</a></p>
+      </div>
+
+      <div class="col-md-4"></div>
+
+      <div class="col-md-4">
+         <h4><span class="label label-info">Latest Posts</span></h4>
+        <div class="hline"></div>
+            {{> blogLatest num=5}}
+      </div>
+
+    </div>
+   </div>
+</div>
+
+</template>
+
+
+<template name="scholars">
+
+
+
+</template>

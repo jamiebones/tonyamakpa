@@ -1,0 +1,159 @@
+
+
+<template name="sideLink">
+
+    <div class="panel-group" id="accordion">
+
+          {{# if isInRole 'admin'}}
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-folder-close">
+                    </span>Academic Issues</a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse in">
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="#">Term Paper</a>
+                    <ul class="list-group">
+                      <li class="list-group-item {{isActiveRoute 'addTermPaper'}}"><span class="glyphicon glyphicon-pencil text-primary"></span><a href="{{pathFor route='addTermPaper'}}">Add Term Paper</a></li>
+
+                    </ul>
+                  </li>
+                     <li class="list-group-item {{isActiveRoute 'addNews'}}"><span class="glyphicon glyphicon-news text-success"></span><a href="{{pathFor route='addNews'}}">Add News</a></li>
+                    <li class="list-group-item {{isActiveRoute 'editNews'}}"><span class="glyphicon glyphicon-news text-success"></span><a href="{{pathFor route='editNews'}}">Edit News</a></li>
+                   <li class="list-group-item {{isActiveRoute 'addnewsLetter'}}"><span class="glyphicon glyphicon-flash text-success"></span><a href="{{pathFor route='addnewsLetter'}}">News Letter</a></li>
+
+                   <li class="list-group-item {{isActiveRoute 'showBooks'}}"><span class="glyphicon glyphicon-file text-info"></span><a href="{{pathFor route='showBooks'}}">Books</a></li>
+
+                   <li class="list-group-item {{isActiveRoute 'bookReview'}}"> <span class="glyphicon glyphicon-comment text-success"></span><a href="{{pathFor route='bookReview'}}">Book Review</a></li>
+
+                  <li class="list-group-item {{isActiveRoute 'addCourseMaterial'}}"> <span class="glyphicon glyphicon-comment text-success"></span><a href="{{pathFor route='addCourseMaterial'}}">Add Course Material</a></li>
+
+                  <li class="list-group-item {{isActiveRoute 'markScript'}}"><span class="glyphicon glyphicon-flash text-success"></span><a href="{{pathFor route='markScript'}}">Mark Script</a></li>
+                  <li class="list-group-item {{isActiveRoute 'teamPaper'}}"> <span class="glyphicon glyphicon-comment text-success"></span><a href="{{pathFor route='teamPaper'}}">Team Term Paper</a></li>
+                  <li class="list-group-item {{isActiveRoute 'scriptPage'}}"><span class="glyphicon glyphicon-file text-info"></span><a href="{{pathFor route='scriptPage'}}">Upload Script</a></li>
+
+                  <li class="list-group-item {{isActiveRoute 'viewFeedbackMsg'}}"><span class="glyphicon glyphicon-file text-info"></span><a href="{{pathFor route='viewFeedbackMsg'}}">View Feedback Message
+                       <span class="badge text-success pull-right">{{unReadFeedbackCount}}</span>
+
+                  </a></li>
+
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#academics"><span class="glyphicon glyphicon-file">
+                  </span>Academics</a>
+                </h4>
+              </div>
+              <div id="academics" class="panel-collapse collapse">
+                <div class="list-group">
+
+                    <li class="list-group-item {{isActiveRoute 'teamPaper'}}"><span class="glyphicon glyphicon-flash text-success"></span><a href="{{pathFor route='teamPaper'}}">Team Term Paper</a></li>
+
+                </div>
+              </div>
+            </div>
+
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour"><span class="glyphicon glyphicon-file">
+                    </span>Accounts</a>
+                </h4>
+              </div>
+              <div id="collapseFour" class="panel-collapse collapse">
+                <div class="list-group">
+
+                  <li class="list-group-item"><span class="glyphicon glyphicon-file text-info"></span><a href="/admin">Admin</a></li>
+
+                </div>
+              </div>
+            </div>
+
+          {{/ if}}
+
+
+    <!--This is the student section -->
+
+           {{# if currentUser}}
+              {{# unless isInRole 'admin'}}
+
+                   <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix"><span class="glyphicon glyphicon-folder-close">
+                              </span>Hello , {{currentUser.profile.firstname}}</a>
+                          </h4>
+                        </div>
+                        <div id="collapseSix" class="panel-collapse collapse in">
+                          <ul class="list-group">
+
+                            <li class="list-group-item {{isActiveRoute 'regNum'}}">
+                              <span class="glyphicon glyphicon-pencil text-primary"></span>
+                              <a href="{{pathFor route='regNum'}}">Registration Number</a></li>
+
+                            <li class="list-group-item {{isActiveRoute 'changepassword'}}">
+                              <span class="glyphicon glyphicon-pencil text-primary"></span>
+                              <a href="{{pathFor route='changepassword'}}">Change Password</a></li>
+
+                            <li class="list-group-item {{isActiveRoute 'submitPaper'}}"><span class="glyphicon glyphicon-open-file text-primary">
+                            </span><a href="{{pathFor route='submitPaper'}}">Submit Assignment</a></li>
+
+                             <li class="list-group-item {{isActiveRoute 'viewTermPaperResult'}}"><span class="glyphicon glyphicon-alert text-primary">
+                             </span><a href="{{pathFor route='viewTermPaperResult'}}">Review Assignment</a></li>
+
+                             <li class="list-group-item {{isActiveRoute 'viewTeamPaper'}}"><span class="glyphicon glyphicon-alert text-primary">
+                             </span><a href="{{pathFor route='viewTeamPaper'}}">Term Paper Assignment(Team)</a></li>
+
+                              <li class="list-group-item {{isActiveRoute 'feedback'}}"><span class="glyphicon glyphicon-envelope text-primary">
+                              </span><a href="{{pathFor route='feedback'}}">Send Feedback Message
+                                  <span class="badge pull-right"></span>
+                              </a></li>
+
+                              <li class="list-group-item {{isActiveRoute 'viewCourseMaterials'}}"><span class="glyphicon glyphicon-th text-primary">
+                              </span><a href="{{pathFor route='viewCourseMaterials'}}">Download Materials</a></li>
+
+                          </ul>
+                        </div>
+                  </div>
+
+                 {{/ unless}}
+
+           {{/ if}}
+
+          </div>
+
+       <div>
+        <h4 class="text-center">Chat</h4>
+         <p>Channels</p>
+          <ul class="list-group">
+            {{#each channel in channels}}
+                <li class="list-group-item {{currentChannel channel.name}}">
+                   <a href="/messages/?channel={{channel.name}}">
+                      #{{channel.name}}
+                    </a>
+                 </li>
+            {{/each}}
+           </ul>
+
+           <p>Direct Message</p>
+
+            <ul class="list-group">
+               {{#each user in unreadMessages}}
+                 <li class="list-group-item {{currentChannel user.username}} js-count">
+                    <a href="/messages/?channel=@{{user.username}}" data-id="{{user.userId}}">
+                      {{user.name}}
+                      <span class="badge pull-right">{{noShowZero user.count}}</span>
+                    </a>
+                  </li>
+               {{/each}}
+             </ul>
+
+        </div>
+</template>

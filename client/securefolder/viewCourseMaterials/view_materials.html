@@ -1,0 +1,49 @@
+
+<template name="viewCourseMaterials">
+  <div class="row">
+     <div class="card">
+
+    <h4 class="text-center">View Course Materials</h4>
+
+    <div class="table-responsive">
+          <table class="table table-striped">
+               <thead>
+                  <td>Level</td>
+                  <td>Course</td>
+                  <td>Type</td>
+                  <td>Document / Page</td>
+                  <td>Action</td>
+               </thead>
+
+
+           {{#each courseMaterials }}
+               <tbody>
+                  <tr>
+                    <td>{{level}}</td>
+                    <td>{{courseCode}}</td>
+                    <td>{{type}}</td>
+                    <td>
+                      {{#if duration}}
+                          <span> {{duration.hours}} : Hours</span>
+                          <span> {{duration.mins}} : Minutes </span>
+                          <span> {{duration.seconds}} : Seconds </span>
+                      {{else}}
+
+                          <span>{{documentPage}} pages</span>
+
+                      {{/if}}
+                    </td>
+                    <td><a href="{{materialLink}}" target="_blank">Download Material</a></td>
+                 </tr>
+
+
+               </tbody>
+          {{/each}}
+        </table>
+ </div>
+
+
+
+  </div>
+</div>
+</template>

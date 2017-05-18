@@ -1,0 +1,98 @@
+
+<template name="courseMaterial">
+  <div class="row">
+     <div class="card">
+
+    <h4 class="text-center">Add Course Material</h4>
+
+       <form id="addCourseMaterial">
+         <div class="form-group">
+            <label for="js-courseLevel">Course Level : </label>
+             <select id="js-courseLevel" class="form-control">
+                <option value="0">Select Level</option>
+               {{#each courseLevel}}
+                  <option value="{{this}}">{{this}}</option>
+                {{/each}}
+              </select>
+         </div>
+
+         <div class="form-group">
+             <label for="course" >Course : </label>
+             <select class="form-control" id='js-course'>
+                <option value="0">Select Course</option>
+
+                {{#each courses}}
+                   <option value="{{course_code}}">{{course_code}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="form-group">
+           <label for="js-materialType">Material Type : </label>
+            <select id="js-materialType" class="form-control">
+               <option value="0">Select Type</option>
+              {{#each materialType}}
+                 <option value="{{this}}">{{this}}</option>
+               {{/each}}
+             </select>
+        </div>
+
+
+      <div class="mediaDuration hide">
+          <fieldset>
+            <legend>Media Duration</legend>
+                     <div class="form-group">
+                         <label for="js-hours"> Hours : </label>
+                            <input type="text" class="form-control smallInput js-hours" />
+                            <label for="js-mins"> Minutes : </label>
+                               <input type="text" class="smallInput form-control js-mins" />
+                               <label for="js-seconds"> Seconds : </label>
+                            <input type="text" class="form-control smallInput js-seconds" />
+                     </div>
+
+          </fieldset>
+      </div>
+
+
+<div class="document hide">
+  <fieldset>
+        <legend>Documents Page</legend>
+
+        <div class="form-group">
+          <label for="js-document"> Pages : </label>
+          <input type="text" class="form-control smallInput js-document" />
+        </div>
+
+ </fieldset>
+  </div>
+
+<div class="form-group uploadMaterial hide">
+
+    <label>Upload File</label>
+    <input type="file" id="js-uploadCourseMaterial"/>
+
+
+
+</div>
+
+
+<div class="hide" id="divProgress">
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+       aria-valuemax="100" style="width: {{progress}}%;">
+          <span class="sr-only">{{progress}} % Complete </span>
+      </div>
+    </div>
+
+        <br/>
+       <p>  {{{isUploading}}} </p>
+  </div>
+    <button class="btn btn-info js-SaveCourseMaterial {{disableButtonIfUploadNotComplete progress}}">
+      Save Course material </button>
+
+</form>
+
+      </div>
+  </div>
+
+</template>

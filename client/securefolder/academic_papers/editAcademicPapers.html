@@ -1,0 +1,188 @@
+
+
+<template name="editAcademicPapers">
+    <div class="row">
+               <div class="col-md-4">
+                     
+                      <h4 class="text-center">Academic Papers</h4>
+
+                      <div class="list-group">
+                           {{# each getAcademicPaper}}
+                                
+                                <button type="button" data-id="{{_id}}" class="list-group-item js-academicPapers"><span class="text-warning"><b>{{name}}</b></span></button>
+                                  
+                           {{/ each}}
+                      </div>
+                     
+					
+                 </div>
+
+
+                 <div class="col-md-8">
+
+                     
+                 		
+
+
+                 </div>
+
+
+
+
+         </div>
+
+
+
+   
+</template>
+
+
+
+
+<template name="academicPapersDetails">
+
+<a href="{{pathFor route="allAcademicPapers"}}">Go Back</a>
+
+ <div class="row card">
+   <div class="col-md-12">
+	
+	{{# with getPaperDetails}}
+
+	<div class="row">
+	   <div class="col-md-5">
+	    <p><span>Paper Name : {{> editableText context=getPaperDetails collection="academic_paper" field="name" class="form-control"}} </span></p>
+	    </div>
+	</div>
+  
+  <div class="row">
+	  <div class="col-md-7">
+	      <p>
+
+		      <span>Abstract : {{> editableText context=getPaperDetails collection="academic_paper" field="abstract" 								 wysiwyg=true}} 
+		      </span>
+	      </p>
+	  </div>
+  </div>
+
+
+  <div class="row">
+     <div class="col-md-8">
+
+       {{# if downloadUrl}}
+            <div class="btn-group">
+				 <a href="{{downloadUrl}}" class="btn btn-default">Download Article</a>
+
+     		   <button class="btn btn-primary js-deletePaper" data-url="{{downloadUrl}}">Delete Paper Upload</button>
+
+            </div>
+
+       {{else}}
+            <p>No article uploaded to storage yet</p>
+
+           <span> <input type="file" id="js-uploadAcademicPaper" > Upload Paper</span>
+
+          <div class="row">
+             <div class="col-md-4">
+                <div class="hide" id="divProgress">
+		            	  <div class="progress">
+							  <div class="progress-bar" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+							  aria-valuemax="100" style="width: {{progress}}%;">
+
+							 <span class="sr-only">{{progress}} % Complete </span>
+
+		                      </div>
+		                   </div>
+
+                    <br/>
+                   <p>  {{{isUploading}}} </p>
+
+                 </div>
+              </div>
+            </div>
+
+       {{/ if}}
+       </div>
+    </div>
+
+    <hr/>
+
+     <div class="row">
+
+       <p class="text-center">Paper Authors</p>
+         {{# if author}}
+            {{# each author}}
+			  <div class="col-md-4">
+			     {{# if imageUrl}}
+			    	 <div class="thumbnail">
+			      		
+			      		<a href="#" class="js-openAuthorModal" data-url="{{imageUrl}}" data-name="{{name}}">
+			      		<img src="{{imageUrl}}" class="card image" alt="{{name}}">
+			      		</a>
+			     		 <div class="caption">
+			      		 
+			      		  <h3>{{this.title}} {{this.name}}</h3>
+
+			      
+			             </div>
+			         </div>
+
+			    {{else}}
+
+			    	<span>Upload picture for {{this.title}} {{this.name}}
+			    	<input type="file" class="js-uploadAuthorPicture" data-name="{{this.name}}" data-id="{{_id}}"></span>
+			    {{/ if}}
+
+			     <div class="authorImageUpload hide">
+						<img src="/img/loading.gif" alt="loading"/>
+                 </div>
+			   
+			 </div>
+			{{/ each}}
+		{{/ if}}
+
+       </div>
+
+    
+
+	{{ / with}}
+
+
+
+</div>
+</div>
+
+
+  
+  <div class="modal fade" id="authorPictureModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				    <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+						<h3 class="modal-title" id="modalTitle"></h3>
+					</div>
+					
+					<div class="modal-body card">
+					   <div class="row">
+					       <div class="col-md-6 col-md-offset-3">
+
+						   <img class="img img-responsive" id="js-picture"/>
+
+						     <p></p>
+
+						    	<div class="modal-footer">
+   
+						    	       <button class="btn btn-danger" id="js-deletePicture">Delete Picture</button>
+
+								</div> 
+						 </div>
+					 </div>
+
+				   </div>
+			  </div>
+			</div>
+	</div>
+	
+</template>
+
+
+

@@ -1,0 +1,24 @@
+
+
+<template name="dashBoard">
+     <div class="row">
+        <div class="col-md-12 card jumbotron">
+            {{# unless currentUser.emails.[0].verified}}
+
+            	<p> <span class="text-warning">You need to verify your email address before you can make use of this website</span>
+            	<a href="#" class="js-resendLink">Resend Verification Link</a></p>
+
+            {{else}}
+                <p>Hello,  <span class="text-info">{{currentUser.profile.firstname}}</span></p>
+
+                <p>Welcome to the application dashboard. You can easily
+
+                find your way by navigating with the side links</p>
+
+            {{/ unless}}
+
+        </div>
+
+     </div>
+
+</template>

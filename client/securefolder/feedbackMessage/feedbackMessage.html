@@ -1,0 +1,22 @@
+
+<template name="feedbackMessage">
+ <div class="container-fluid">
+    <div class="row">
+       <div class="col-md-6 col-md-offset-3 card">
+           {{#autoForm id="feedbackForm" collection="MessageFeedback" type="method" meteormethod="saveMessageFeedback" validation="keyup"  }}
+            <fieldset>
+               <legend>Drop me a line</legend>
+              <div class="formgroup {{#if afFieldIsInvalid name='message'}} has-error{{/if}}">
+                  {{> afQuickField name="message" rows=6 }}
+              </div>
+            </fieldset>
+              <div class="form-group">
+                 <button type="submit" class="btn btn-primary">Send Feedback</button>
+              </div>
+          {{/ autoForm}}
+
+       </div>
+   </div>
+ </div>
+
+</template>

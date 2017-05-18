@@ -1,0 +1,40 @@
+
+
+<template name="editHistory">
+
+    <div class="row">
+       <div class="col-md-4 card">
+			<select class="js-showHistoryDate form-control">
+				<option value="0">Select History</option>
+				     {{# each History}}
+						 <option value="{{_id}}">{{{shortExtract extract}}}</option>
+					  {{/ each}}
+			         
+	        </select>
+       </div>
+
+
+       <div class="col-md-8">
+
+       			
+
+
+       </div>
+
+    </div>
+	
+</template>
+
+
+<template name="historyDetails">
+   
+     <button class="btn btn-danger js-goBackHistory">Go Back</button>
+
+     <hr/>
+       <div class="history">
+       	  <div id="summernoteEditHistory"></div>
+       </div>
+         
+      <button class="btn btn-info js-saveEDitHistory">Save History Edit</button>
+     
+</template>

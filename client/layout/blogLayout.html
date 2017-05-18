@@ -1,0 +1,36 @@
+
+
+
+<template name='blogLayout'>
+   
+   <div class="container-fluid"> 
+      <div class="row">
+           {{> header}}
+      </div>
+   </div>
+    
+  
+   <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12 padTop" >
+             
+             {{> yield}}
+
+
+          </div>
+       
+       
+       
+       </div>
+
+    </div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+    
+   	    {{ > footer}}
+    </div>
+</div>
+</template>

@@ -1,0 +1,286 @@
+
+<template name="markScript">
+  <!--
+Bootstrap Line Tabs by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container-fluid">
+  <div class="row">
+     <div class="col-md-12">
+       <div class="tabbable-panel">
+         <div class="tabbable-line">
+           <ul class="nav nav-tabs ">
+              <li class="active">
+                <a href="#tab_default_1" data-toggle="tab">
+                Grade Term Paper </a>
+          </li>
+          <li>
+            <a href="#tab_default_2" data-toggle="tab">
+            Grade Collaborative Term Paper</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="tab_default_1">
+            <br/>
+            <br/>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-4">
+                       <select class="js-selectAssignment form-control">
+
+                           <option value="0">Select Assignment</option>
+                        {{# each showAssignment}}
+                      <option value="{{_id}}">{{paper_name}}</option>
+                      {{/ each}}
+
+                           </select>
+                    </div>
+
+
+                </div>
+               <div class="row">
+                 <div class="col-md-12">
+                 <div class="details hide card table-responsive">
+                    <table class="table">
+                       <thead>
+                           <th>Name</th>
+                           <th>Reg Num</th>
+                           <th>Submit Link</th>
+                           <th>Date Submitted</th>
+                           <th>Score</th>
+                           <th>Script Graded</th>
+                           <th>Actions</th>
+                       </thead>
+
+                       <tbody>
+
+                          {{#each scripts}}
+
+                            <tr>
+                              {{#if userId}}
+                                <td>{{profile.firstname}} {{profile.surname}}</td>
+                              {{/ if}}
+
+                              {{#if userId}}
+                                <td>{{profile.regNum}}</td>
+                              {{/ if}}
+
+                              {{#if submittedLink}}
+                                <td><a href="{{submittedLink}}" class="btn" target="_blank">
+                                <span class="glyphicon glyphicon-cloud-download text-primary"></span>Download Script
+                                </a></td>
+                              {{/ if}}
+
+                              {{#if date_submitted}}
+                                <td>{{formatDate date_submitted}}</td>
+                              {{/ if}}
+
+                              {{#if score}}
+                                <td>{{score}}</td>
+                              {{else}}
+                                  <td>No Score</td>
+                              {{/ if}}
+
+                              {{#if sriptMarked}}
+                                <td>Yes</td>
+                              {{else}}
+                                  <td>No</td>
+                              {{/ if}}
+
+                              {{#if userId}}
+                                 <button class="btn-success js-addPaperScore" data-num="{{@index}}">Add Score</button>
+                              {{/ if}}
+
+
+                            </tr>
+
+                         {{/ each}}
+
+                       </tbody>
+
+                     </table>
+                  </div>
+               </div>
+             </div>
+
+          </div>
+          <div class="tab-pane" id="tab_default_2">
+            <div class="details card table-responsive">
+               <table class="table">
+                  <thead>
+                      <th>Paper Name</th>
+                      <th>Date Created</th>
+                      <th>Download Link</th>
+                      <th>Script Graded</th>
+                      <th>Actions</th>
+                  </thead>
+
+                  <tbody>
+
+                     {{#each getAllTeamTermPapers}}
+
+                       <tr>
+
+                        <td> {{paper_name}} </td>
+
+                        <td> {{formatDate date_created}} </td>
+
+                         {{#if paperUrl}}
+                           <td><a href="{{paperUrl}}" class="btn" target="_blank">
+                           <span class="glyphicon glyphicon-cloud-download text-primary"></span>Download Script
+                           </a></td>
+                          {{else}}
+                             <td>Not Yet Submitted</td>
+                         {{/ if}}
+
+                         {{#if script_marked}}
+                           <td>Yes</td>
+                         {{else}}
+                             <td>No</td>
+                         {{/ if}}
+
+                             <td>
+                               <div class="btn-group">
+                                 <button type="button" class="btn btn-default btn-xs js-viewPaper" data-id="{{_id}}">
+                                    <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> View
+                                  </button>
+
+                                  <button type="button" class="btn btn-success btn-xs js-scorePaper {{disableControl score}}" data-id="{{_id}}">
+                                    <span class="glyphicon glyphicon-blackboard {{disableControl score}}" aria-hidden="true"></span> Score
+                                  </button>
+
+                               </div>
+                             </td>
+                       </tr>
+                    {{/ each}}
+
+                  </tbody>
+                </table>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</div>
+
+
+
+
+<div class="modal fade" id="scoreModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+			<h3 class="modal-title" id="modalTitle"></h3>
+		</div>
+		<div class="modal-body">
+		    <!-- content goes here -->
+    <div class="row">
+        <div class="col-md-4">
+           <div class="form-group">
+              <label class="label-control">Score</label>
+              <input type="text" class="js-studentScore form-control">
+           </div>
+        </div>
+		</div>
+
+		<div class="modal-footer">
+			 <button class="btn btn-success js-savePaperScore">Save Score</button>
+		</div>
+	</div>
+  </div>
+</div>
+</div>
+
+
+<div class="modal fade" id="viewTeamPaperModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+ <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+     {{#each getPaperDetails}}
+        <h3 class="modal-title" id="modalTitle">{{paper_name}}</h3>
+     {{/each}}
+   </div>
+   <div class="modal-body card">
+       {{#each getPaperDetails}}
+           <p><b>Term Paper Title </b>: <span>{{paper_name}}</span></p>
+           <p><b>Instruction </b> : {{instructions}}</p>
+           <p><b>Last Submission Date </b> : {{formatDate last_submission_date}}</p>
+           <p>Team Members</p>
+           {{#each member}}
+                {{#if teamLeader}}
+                    <p>{{regnum}} <span class="text-success">Team Leader</span></p>
+                {{else}}
+                    <p>{{regnum}}</p>
+                {{/if}}
+           {{/each}}
+
+           <p><b>Text Created </b> : {{formatDate date_created}}</p>
+
+
+            {{#if score}}
+               <p><b>Score </b> : {{score}} </p>
+            {{else}}
+               <p><b>Score </b> : Not yet graded </p>
+            {{/if}}
+
+            {{#if dateSubmitted}}
+               <p><b>Date Submitted </b> : {{formatDate dateSubmitted}} </p>
+            {{else}}
+                <p><b>Date Submitted </b> : Not Yet </p>
+            {{/if}}
+
+            {{#if script_marked}}
+               <p><b>Script Marked </b> :<span class="text-success">Yes</span> </p>
+            {{else}}
+               <p><b>Script Marked </b> : <span class="text-success">No</span></p>
+            {{/if}}
+
+           <div class="modal-footer">
+
+           </div>
+       {{/ each}}
+
+ </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<div class="modal fade" id="gradeTeamPaperModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+ <div class="modal-content">
+   <div class="modal-header">
+     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+
+   </div>
+   <div class="modal-body">
+       <div class="row">
+          <div class="col-md-12">
+             <div class="col-md-2">
+               <div class="form-group">
+                  <input type="text" class="form-control js-teamScore" />
+               </div>
+             </div>
+          </div>
+        </div>
+
+
+      <div class="modal-footer">
+           <button class="btn btn-primary btn-sm js-saveTeamPaperScores">Save Scores</button>
+      </div>
+
+ </div>
+  </div>
+</div>
+</div>
+</template>

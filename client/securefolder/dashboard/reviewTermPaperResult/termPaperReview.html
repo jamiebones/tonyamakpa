@@ -1,0 +1,32 @@
+
+<template name="termPaperReview">
+    <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-6 col-md-offset-3 card">
+	           {{# each assignmentDetails}}
+	               
+	              {{# if owner}}
+	                 <p class="text-center"><b><u>Assignment Name :{{name}}</u></b></p>
+	                 <p>Created Date : {{formatDate createdDate}} </p>
+	                 <p>Last Date : {{formatDate submitDate}} </p>
+
+	                 <p>Date Submitted : {{formatDate owner.date_submitted}} </p>
+	                 <p>Script Marked : {{checkValue owner.sriptMarked}}</p>
+	                 <p>Assignment Submitted : {{checkValue owner.submitted}}</p>
+
+
+	                 <hr/>
+	              {{else}}
+
+	                 <!--   There's no owner object the person has'nt submitted yet  -->
+	                 <p class="text-center"><b><u>Assignment Name :{{name}}</u></b></p>
+	                 <p>Created Date : {{formatDate createdDate}} </p>
+	                 <p>Last Date : {{formatDate submitDate}} </p>
+
+	              {{/ if}}
+
+	           {{/ each}}
+            </div>
+        </div>
+    </div>
+</template>

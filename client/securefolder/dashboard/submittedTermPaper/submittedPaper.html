@@ -1,0 +1,147 @@
+
+
+<template name="submittedPaper">
+   <div class="container-fluid">
+	 <div class="row">
+	    <div class="col-md-12 card">
+
+	     <div class="row">
+	         <div class="col-md-4 col-md-offset-4">
+	         		<select class="js-selectAssignment form-control">
+
+			            <option value="0">Select Assignment</option>
+				       {{# each showAssignment}}
+						         <option value="{{_id}}">{{paper_name}}</option>
+                {{/ each}}
+
+	                </select>
+
+	         </div>
+
+
+	     </div>
+
+       <br/>
+       <hr/>
+
+	     <div class="row">
+	          <div class="col-md-8 col-md-offset-2 divPaperDetails hide">
+                {{# if timeEnded}}
+
+                    <p class="text-danger lead">You can no longer submit this assignment again</p>
+
+                {{else}}
+                  {{#with $.Session.get 'timeLapse'}}
+                  <div class="text-center">
+                      <div id="clockDiv">
+                          <div>
+                              <span class="days">{{days}}</span>
+                              <div class="smalltext">Days</div>
+                          </div>
+
+                          <div>
+                              <span class="days">{{hours}}</span>
+                              <div class="smalltext">Hours</div>
+                          </div>
+
+                          <div>
+                              <span class="days">{{minutes}}</span>
+                              <div class="smalltext">Minutes</div>
+                          </div>
+
+                          <div>
+                              <span class="days">{{seconds}}</span>
+                              <div class="smalltext">Seconds</div>
+                          </div>
+                      </div>
+                    </div>
+                   {{/with}}
+                {{/ if}}
+
+
+
+	          	 {{# with assignmentDetails}}
+	          	    {{# if paper}}
+	          	       {{#each paper}}
+				              <p>Paper Name : {{paper_name}}</p>
+
+				              <p>Date Created : {{formatDate date_created}}</p>
+
+				              <p>Last Submission Date : {{formatDate last_submission_date}}</p>
+
+
+                          {{#if instructions}}
+                              <p class="text-center lead"><b><i>Instructions</i></b></p>
+                              <p class="text-info">{{{instructions}}}</p>
+                          {{else}}
+                              <p>Simple paper no instructions needed</p>
+                          {{/ if}}
+
+
+
+
+
+			            {{/ each}}
+			         {{/ if}}
+
+			         	{{# if submitDetails}}
+			         	    <!--the person has'nt submitted the paper yet -->
+			         	   <p>Assignment already submitted</p>
+			         	  {{#each submitDetails}}
+
+			         	      <P>Assignment Marked : {{checkValue sriptMarked}}</P>
+
+			         	  {{/ each}}
+
+
+						{{else}}
+
+					     {{#each paper}}
+			         		{{# if compareDate last_submission_date}}
+						         <input type="file" class="js-submitAssignment">
+
+						    {{else}}
+								 <p class="text-danger">You can no longer submit this assignment again</p>
+
+						    {{ / if}}
+						 {{/ each}}
+			         	{{/ if}}
+	              {{/ with }}
+
+
+
+
+
+	          </div>
+	     </div>
+
+
+	     <div class="row">
+	         <div class="col-md-8 col-md-offset-2">
+
+		            <div id="divUpload" class="hide">
+
+		               <p id="js-paperTitle"></p>
+
+                	  <div id="divProgress">
+		            	  <div class="progress">
+							  <div class="progress-bar" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+							  aria-valuemax="100" style="width: {{progress}}%;">
+
+							 <span class="sr-only">{{progress}} % Complete </span>
+
+		                      </div>
+		                   </div>
+
+                    <br/>
+                   <p>  {{{isUploading}}} </p>
+
+                   </div>
+                </div>
+	    </div>
+	   </div>
+	    </div>
+
+	 </div>
+ </div>
+</template>

@@ -1,0 +1,20 @@
+
+
+<template  name="multipleUpload">
+	
+    <input id="upload-btn" type="file" multiple="true">
+
+
+   <div class="progress overallProgress" >
+    <div class="progress-bar" role="progressbar" aria-valuenow="{{progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{progress}}%;">
+      <span>{{progress}}% Total Complete</span>
+    </div>
+  </div>
+
+
+  {{#if testing}}
+
+
+  {{/ if}}
+
+</template>

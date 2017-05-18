@@ -1,0 +1,27 @@
+
+
+<template name="regNumber">
+   <div class="container-fluid">
+         {{#each getUser}}
+           {{#unless regnum}}
+                <div class="row">
+                     <div class="col-md-6 col-md-offset-3 card">
+                         <div class="input-group">
+                             <input type="text" class="form-control js-regNumber" placeholder="Enter your registeration number----">
+                             <span class="input-group-btn">
+                             <button class="btn btn-default js-saveRegNum" type="button">Save</button>
+                             </span>
+                         </div>
+                     </div>
+                </div>
+            {{else}}
+              <div class="row">
+                 <div class="col-md-6 col-md-offset-3 card">
+                    <h1 class="text-center">{{regnum}}</h1>
+               </div>
+             </div>
+           {{/ unless}}
+        {{/ each}}
+
+  </div>
+</template>

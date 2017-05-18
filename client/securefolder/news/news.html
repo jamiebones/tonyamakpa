@@ -1,0 +1,30 @@
+
+
+
+<template name="news">
+  <div class="container-fluid">
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2 card">
+            <h3 class="text-center text-info">Enter Homepage News</h3>
+       {{#autoForm id="newsInsertForm" collection="News" type="method" meteormethod="saveNews" validation="keyup" }}
+          <div class="formgroup {{#if afFieldIsInvalid name='news'}} has-error{{/if}}">
+                  {{> afQuickField name="news" type="textarea"  }}
+          </div>
+
+         <div class="formgroup {{#if afFieldIsInvalid name='date'}} has-error{{/if}}">
+           {{> afQuickField name="date" type="date"  }}
+        </div>
+
+        <div class="formgroup {{#if afFieldIsInvalid name='active'}} has-error{{/if}}">
+           {{> afQuickField name="active"  }}
+       </div>
+
+       <div class="form-group">
+           <button type="submit" class="btn btn-primary">Save News Details</button>
+       </div>
+
+       {{/autoForm}}
+     </div>
+    </div>
+  </div>
+</template>

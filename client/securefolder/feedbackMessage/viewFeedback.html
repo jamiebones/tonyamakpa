@@ -1,0 +1,29 @@
+
+<template name="viewFeedback">
+  <div class="container-fluid">
+     <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-5 card">
+               <p class="text-center">Unread Messages</p>
+                  {{#each unReadMessages}}
+                        <p class="text-info">{{message}}</p>
+                        <p>{{getName sender}}</p>
+                        <p>Date Sent : {{formatDate messageDate}} </p>
+                        <p><button class="btn btn-danger js-makeMsgRead" data-id="{{_id}}">Mark As Read</button></p>
+                   {{/each}}
+            </div>
+
+            <div class="col-md-5 col-md-offset-1 card">
+                <p class="text-center text-success">Read Messages</p>
+                {{#each   readMessages}}
+                      <p class="text-success">{{message}}</p>
+                      <p>{{getName sender}}</p>
+                      <p>Date Sent : {{formatDate messageDate}} </p>
+                      <p></p>
+                 {{/each}}
+            </div>
+
+        </div>
+    </div>
+  </div>
+</template>

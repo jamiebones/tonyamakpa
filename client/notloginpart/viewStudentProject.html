@@ -1,0 +1,25 @@
+
+
+<template name="viewStudentProject">
+    <div class="container-fluid">
+       <div class="row card">
+          <h4 class="text-center">Student Projects</h4>
+          {{#each projects}}
+            <div class="col-md-3">
+               <p><span><b>Student Name :</b></span>{{studentName}}</p>
+
+               <p><span><b>Registration Num :</b></span>{{regNum}}</p>
+
+               <p><span><b>Project Topic :</b></span>{{projectTopic}}</p>
+
+               <p><span><b>Supervisor :</b></span>{{supervisor}}</p>
+               {{#if projectLink}}
+                  <p><a href="{{projectLink}}" target="_blank" class="btn btn-success js-projectTopic">Download Project</a></p>
+               {{/if}}
+               <br/>
+               <hr/>
+            </div>
+          {{/each}}
+    </div>
+    </div>
+</template>

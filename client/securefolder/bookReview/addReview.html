@@ -1,0 +1,80 @@
+
+
+<template name="addReview">
+    <div class="row">
+       <div class="col-md-12 card">
+          <div class="row">
+              <div class="col-md-6">
+
+        	 {{# each indexGetBook}}
+        	     <div style="margin-bottom:-49px; overflow:hidden;">
+				   <img class="js-paperImage" src="{{book_image}}"/><br />
+				   <div class="watermark">Property Available</div>
+				</div>
+
+				<br/>
+
+
+                 <p>Book Name : {{book_title}}</p>
+
+               {{/ each}}
+                   <div class="form-group">
+
+
+
+
+		   						  <!-- div for phone starts here-->
+		                         <div id="phone" class="row js-divAuthor" style="margin-left: 10px;">
+		                             <div class="col-xs-12 well">
+
+		                                  <h4 class="text-center">Add and Edit Author Names</h4>
+		                               {{#each getBook}}
+		                             		 {{> editableList context=getBook collection="book_review" field="book_author" placeholder="New Author" class="text-primary"}}
+		                              {{/ each}}
+
+
+		                             {{#each indexGetBook}}
+
+		                              {{> editableText collection="book_review" field=field wysiwyg=true}}
+  									 {{/each}}
+
+		                           </div>
+		                        </div>
+		                        <!-- div for author ends here-->
+
+
+
+			            </div>
+
+
+              </div>
+          </div>
+
+          <div class="row">
+             <div class="col-md-8">
+
+
+             		<div class="form-group">
+             		    <label for="reviewer name">Review Name</label>
+
+             		    <input type="text" class="form-control js-reviewerName" >
+             		</div>
+
+
+                   <div class="form-group">
+					 <label for="book review">Review</label>
+						<div id="summernoteReview"></div>
+
+					</div>
+
+
+			<p> Rating : {{> starsRating id='rating' mutable=true size=25 }}</p>
+
+				<button class="btn btn-primary js-saveReview">Save Review</button>
+             </div>
+          </div>
+
+
+       </div>
+    </div>
+</template>

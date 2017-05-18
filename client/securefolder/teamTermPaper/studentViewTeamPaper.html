@@ -1,0 +1,102 @@
+
+
+<template name="studentViewTeamPaper">
+   <div class="row">
+      <div class="col-md-12 card">
+          <div class="table-responsive">
+               <table class="table table-hover">
+
+                   <thead>
+                     <tr>
+                      <th class="text-danger">Term Paper Name</th>
+                      <th class="text-danger">View</th>
+                      <th class="text-danger">Count Down</th>
+                      <th class="text-danger">Score</th>
+                      <th class="text-danger">Download</th>
+                    </tr>
+                   </thead>
+
+                 <tbody>
+                   {{#each lastDate}}
+                       <tr>
+                          <td>{{paper_name}}</td>
+
+                      <td>
+                        <button class="btn btn-default btn-sm js-viewDetails" data-id="{{_id}}">View Details</button>
+                      </td>
+
+                      <td>{{Timer last_submission_date}}</td>
+                      <td>
+                         {{#if score}}
+                            <p>{{score}}</p>
+                         {{else}}
+                            <p><b>Not Marked</b></p>
+                         {{/if}}
+
+                      </td>
+                  </tr>
+                   {{/each}}
+                </tbody>
+              </table>
+            </div>
+
+
+      </div>
+   </div>
+
+
+   <!-- line modal -->
+   <div class="modal fade" id="paperModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+   	<div class="modal-content">
+   		<div class="modal-header">
+   			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+        {{#each getPaperDetails}}
+           <h3 class="modal-title" id="modalTitle">{{paper_name}}</h3>
+        {{/each}}
+   		</div>
+   		<div class="modal-body card">
+   		    {{#each getPaperDetails}}
+              <p><b>Term Paper Title </b>: <span>{{paper_name}}</span></p>
+              <p><b>Instruction </b> : {{instructions}}</p>
+              <p><b>Last Submission Date </b> : {{formatDate last_submission_date}}</p>
+              <p>Team Members</p>
+              {{#each member}}
+                  <p>{{regnum}} <span class="text-success">{{areYouATeamLeader teamLeader}}</span></p>
+              {{/each}}
+              <p><b>Text Created </b> : {{formatDate date_created}}</p>
+            <div class="modal-footer">
+              {{#unless scriptSubmitted}}
+                {{#each member}}
+                   {{#if getTeamLeader teamLeader regnum}}
+                   <p class="text-center text-info lead">Submitted paper should be a word document and it shouldn't exceed 50kb in size</p>
+                       <div class="form-group">
+                           <label class="pull-left">Submit Term Paper</label>
+                          <input type="file" class="btn form-control js-submitTeamPaper"/>
+                       </div>
+
+                       <div class="hide" id="divProgress">
+                           <div class="progress">
+                             <div class="progress-bar" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+                              aria-valuemax="100" style="width: {{progress}}%;">
+                                 <span class="sr-only">{{progress}} % Complete </span>
+                             </div>
+                           </div>
+
+                               <br/>
+                              <p>  {{{isUploading}}} </p>
+                         </div>
+                   {{/if}}
+                {{/each}}
+                {{else}}
+                    <p class="text-center text-info lead">Paper Submitted already on : {{formatDate dateSubmitted}}</p>
+               {{/unless}}
+
+              </div>
+          {{/ each}}
+
+   	</div>
+     </div>
+   </div>
+   </div>
+</template>

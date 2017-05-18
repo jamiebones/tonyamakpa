@@ -1,0 +1,31 @@
+
+
+<template name="channel">
+   <div class="container-fluid">
+      <div class="row card">
+         <div class="col-md-10">
+            <div class="conversation">
+                <div id="messages">
+                    <div class="messages-list {{#if isLoading}}loading-list{{/if}}">
+                        {{#each messages}}
+                          {{> message}}
+                        {{else}}
+                          {{#if isDirect}}
+                             <p class="alert alert-warning">You haven't said anything to {{username}} yet </p>
+                          {{else}}
+                             <p class="alert alert-warning">This broadcast channel is pretty quite. Start a conversation</p>
+                          {{/if}}
+                        {{/ each}}
+                    </div>
+                </div>
+
+                <div class="message-input">
+
+                     <input name="message" class="form-control" placeholder="Type your message here....">
+
+                </div>
+            </div>
+        </div>
+     </div>
+  </div>
+</template>

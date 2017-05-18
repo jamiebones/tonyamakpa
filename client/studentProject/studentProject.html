@@ -1,0 +1,59 @@
+
+
+<template name="studentProject">
+  <div class="container-fluid">
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2 card">
+            <h3 class="text-center text-info">Save Student Project</h3>
+
+            <div class="form-group divProjectUpload">
+                <input type="file" class="form-control btn-default" id="js-studenfFileUpload" />
+            </div>
+
+            <div class="hide" id="divProgress">
+                <div class="progress">
+                  <div class="progress-bar" role='progressbar' aria-valuenow="{{progress}}" aria-valuemin="0"
+                   aria-valuemax="100" style="width: {{progress}}%;">
+                      <span class="sr-only">{{progress}} % Complete </span>
+                  </div>
+                </div>
+
+                    <br/>
+                   <p>  {{{isUploading}}} </p>
+              </div>
+
+              <label class="btn btn-default" id="tryme">{{getDownloadUrl}}</label>
+
+          <div class="projectFormDiv">
+             {{#autoForm id="StudentProjectForm" downloadUrl=getDownloadUrl collection="StudentProject" type="method" meteormethod="saveStudentProject" validation="keyup" }}
+                <div class="formgroup {{#if afFieldIsInvalid name='studentName'}} has-error{{/if}}">
+                        {{> afQuickField name="studentName" type="text"  }}
+                </div>
+
+               <div class="formgroup {{#if afFieldIsInvalid name='regNum'}} has-error{{/if}}">
+                 {{> afQuickField name="regNum" type="text"  }}
+               </div>
+
+               <div class="formgroup {{#if afFieldIsInvalid name='projectTopic'}} has-error{{/if}}">
+                {{> afQuickField name="projectTopic" type="text"  }}
+              </div>
+
+              <div class="formgroup {{#if afFieldIsInvalid name='supervisor'}} has-error{{/if}}">
+               {{> afQuickField name="supervisor" type="text"  }}
+              </div>
+
+             <div class="form-group">
+                 <button type="submit" class="btn btn-primary">Save Project Details</button>
+             </div>
+             {{/autoForm}}
+          </div>
+
+     </div>
+    </div>
+  </div>
+
+
+
+
+
+</template>

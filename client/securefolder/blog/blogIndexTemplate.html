@@ -1,0 +1,68 @@
+
+
+
+<template name="blogIndexTemplate">
+     <div class="container-fluid">
+         <div class="row card">
+            <div class="col-md-10">
+
+           <p class="lead text-center">Blog Index</p>
+
+
+           {{#if blogReady}}
+                  
+	          {{#each posts}}
+                 <div class="col-md-10 blogShort">
+                    <h4>Title : <b><i>{{title}}</i></b></h4>
+
+                     <article>
+                        <p class="well">
+                            Excerpt : {{excerpt}}
+                        </p>
+                       </article>
+                  
+                  <p>  Tags :  
+                 {{#each tags}}
+                 	 <span class="label label-warning"><a href="/tony_amakpa_blog/tag/{{this}}">{{this}}</a></span>
+                 {{/ each}}
+                 </p>
+                 <p>Date Published : {{publishedAt}}</p>
+                 <a class="btn btn-blog pull-right" href="/tony_amakpa_blog/{{slug}}">READ MORE</a>
+                 <br/>
+                 
+              </div>
+           {{else}}
+
+            <p class="alert alert-info">No posts found.</p>
+
+       {{/ each}}
+
+       {{else}}
+          {{> spinner}}
+
+      {{/if}}
+
+      {{blogPager}}
+
+
+					
+           </div>
+
+           <div class="col-md-2">
+
+               <p class="lead text-center">Tags</p>
+
+                  {{#if blogReady}}
+                     {{#each checkTag posts}}
+				        <span class="label label-danger"><a class="aLink" href="/tony_amakpa_blog/tag/{{removeNum this}}">{{this}}</a></span>
+                     {{/each}}
+
+                  {{/if}}
+
+           </div>
+     </div>
+   </div>
+
+</template>
+
+

@@ -1,0 +1,75 @@
+
+
+<template name="editNews">
+  <div class="container-fluid">
+    <div class="row">
+       <div class="col-md-8 col-md-offset-2 card">
+          <h3 class="text-center text-info">Edit Homepage News</h3>
+          <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                       <td class="text-center text-info">SN</td>
+                       <td class="text-center text-info">News</td>
+                       <td class="text-center text-info">Date</td>
+                       <td class="text-center text-info">Active</td>
+                       <td class="text-center text-info">Edit</td>
+                       <td class="text-center text-info">Delete</td>
+                    </thead>
+
+                  <tbody>
+
+                    {{#each showNews}}
+                    <tr>
+
+                       <td>{{showIndex @index}}</td>
+                       <td>{{news}}</td>
+                       <td>{{date}}</td>
+                       <td>{{amIActiveBitch active}}</td>
+                       <td><a href='/admin_matters/edit_single_news/{{_id}}' class="btn-info js-editNews">Edit</a></td>
+                       <td><a class="btn-danger js-deleteNews">Delete</a></td>
+
+                    </tr>
+                    {{/each}}
+                   </tbody>
+
+               </table>
+
+     </div>
+    </div>
+  </div>
+
+</div>
+
+
+</template>
+
+
+<template name="editSingleNews">
+  <div class="container-fluid">
+    <div class="row">
+         <p class="pull-left">
+          <a href="{{pathFor route='editNews'}}" class="btn btn-success">News Archive</a>
+        </p>
+       <div class="col-md-8 col-md-offset-2 card">
+          {{#autoForm id="updateNewsForm" collection="News" doc=this type="method-update" meteormethod="updateNews" validation="keyup" }}
+             <div class="formgroup {{#if afFieldIsInvalid name='news'}} has-error{{/if}}">
+                     {{> afQuickField name="news" type="textarea"  }}
+             </div>
+
+            <div class="formgroup {{#if afFieldIsInvalid name='date'}} has-error{{/if}}">
+              {{> afQuickField name="date" type="date"  }}
+           </div>
+
+           <div class="formgroup {{#if afFieldIsInvalid name='active'}} has-error{{/if}}">
+              {{> afQuickField name="active"  }}
+          </div>
+
+          <div class="form-group">
+              <button type="submit" class="btn btn-primary">Update News Details</button>
+          </div>
+
+          {{/autoForm}}
+      </div>
+    </div>
+  </div>
+</template>

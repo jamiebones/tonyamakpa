@@ -1,0 +1,49 @@
+
+<template name="header">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Tony Amakpa Educational website and blog">
+    <meta name="author" content="James Oshomah">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Anthony Amamkpa</title>
+
+
+
+  </head>
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand logo" href="/">ANTHONY AMAMKPA.</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-right">
+          <ul class="nav navbar-nav">
+            <li class="{{isActiveRoute 'home'}}"><a href="/">HOME</a></li>
+            <li><a href="{{blogPathFor 'blogIndex'}}">BLOG</a></li>
+            <li class="{{isActiveRoute 'projects'}}"><a href="{{pathFor route='projects'}}">Projects</a></li>
+            {{#if isInRole 'admin'}}
+                <li class="{{isActiveRoute 'manageUsers'}}"><a href="{{pathFor route='manageUsers'}}">Manage Users</a></li>
+            {{/if}}
+
+            {{#if currentUser}}
+                <li>{{> atNavButton}}</li>
+            {{else}}
+                <li class="{{isActiveRoute 'signUp'}}"><a href="{{pathFor route='signUp'}}">Create Account</a></li>
+            {{/if}}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+</template>

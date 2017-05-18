@@ -1,0 +1,40 @@
+
+<template name="showBlogTemplate">
+    <div class="container-fluid">
+         <div class="row">
+             <div class="col-md-2"></div>
+             
+             <div class="col-md-8 card">
+
+             	{{#with post}}
+             	   {{#if isInRole '[admin ,blogAdmin ,blogAuthor]'}}
+
+             	   		 <a href="/{{_id}}">Edit</a>
+
+             	   {{/ if}}
+
+             	  <h3 class="text-center"> <b><i>{{title}} </i></b></h3>
+
+             	   <p>Published At : {{publishedAt}}</p>
+
+             	   <p>By : {{author.profile.firstname}}  {{author.profile.surname}}</p>
+
+             	    <p class="well"> {{{body}}} </p>
+
+             	   	{{> disqus this}}
+
+             	   <div class="col-md-12 col-xs-12">
+                     <span><a href="{{blogPathFor 'blogIndex'}}">Blog Index</a></span>
+                	 <span class="pull-right"> {{> shareit}} </span>
+                   </div>
+
+             	{{/ with}}
+
+         	 </div>
+
+         	<div class="col-md-2"></div>
+
+
+         </div>
+    </div>
+</template>
